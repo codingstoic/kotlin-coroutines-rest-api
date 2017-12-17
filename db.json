@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "id": 1,
+      "first_name": "Muhammed",
+      "last_name": "Ali"
+    },
+    {
+      "id": 2,
+      "first_name": "Brucee",
+      "last_name": "Lee"
+    },
+    {
+      "id": 2,
+      "first_name": "Badel",
+      "last_name": "Hari"
+    },
+    {
+      "id": 3
+    }
+  ]
+}

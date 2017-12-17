@@ -11,7 +11,7 @@ class RestClient{
     companion object {
         var retrofit: Retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://10.0.2.2:30000")
+                .baseUrl("http://10.0.2.2:3000")
                 .build()
         val apiDefinition: APIDefinition = retrofit.create(APIDefinition::class.java)
     }

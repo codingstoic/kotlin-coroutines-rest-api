@@ -56,9 +56,7 @@ class MainActivity : AppCompatActivity() {
             numberOfPostsTextView.text = numberOfPosts
 
         }.invokeOnCompletion { it: Throwable? ->
-            alert("Caught an exception inside invoke on completion callback"){
-                okButton {  }
-            }.show()
+            alertWithOkButton("Caught an exception inside invoke on completion callback")
             it?.printStackTrace()
         }
     }
@@ -74,21 +72,21 @@ class MainActivity : AppCompatActivity() {
 
                 toast("Created user id is ${listOfUsers.body()?.id}")
             } catch (ex: IOException) {
-                alert("Error with internet connection"){
-                    okButton {  }
-                }.show()
+                alertWithOkButton("Error with internet connection")
             } catch (ex: RuntimeException) {
-                alert("Error with parsing server response"){
-                    okButton {  }
-                }.show()
+                alertWithOkButton("Error with parsing server response")
             }
         }
     }
 
-    private val exceptionHandler: CoroutineContext = CoroutineExceptionHandler { _, throwable ->
-        alert("Exception caught inside the exception handler"){
+    private fun alertWithOkButton(message: String){
+        alert(message) {
             okButton {  }
         }.show()
+    }
+
+    private val exceptionHandler: CoroutineContext = CoroutineExceptionHandler { _, throwable ->
+        alertWithOkButton("Exception caught inside the exception handler")
         throwable.printStackTrace()
     }
 

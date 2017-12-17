@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity() {
             numberOfPostsTextView.text = numberOfPosts
 
         }.invokeOnCompletion { it: Throwable? ->
-            println("caught an exception inside invoke on completion callback")
+            alert("Caught an exception inside invoke on completion callback"){
+                okButton {  }
+            }.show()
             it?.printStackTrace()
         }
     }
@@ -70,17 +72,23 @@ class MainActivity : AppCompatActivity() {
                     RestClient.apiDefinition.createUser(user).execute()
                 }
 
-                println("Created user id is ${listOfUsers.body()?.id}")
+                toast("Created user id is ${listOfUsers.body()?.id}")
             } catch (ex: IOException) {
-                println("some exception $ex")
+                alert("Error with internet connection"){
+                    okButton {  }
+                }.show()
             } catch (ex: RuntimeException) {
-                println("error decoding response $ex")
+                alert("Error with parsing server response"){
+                    okButton {  }
+                }.show()
             }
         }
     }
 
     private val exceptionHandler: CoroutineContext = CoroutineExceptionHandler { _, throwable ->
-        println("exception caught inside the exception handler")
+        alert("Exception caught inside the exception handler"){
+            okButton {  }
+        }.show()
         throwable.printStackTrace()
     }
 

@@ -9,7 +9,6 @@ import kotlinx.coroutines.experimental.android.UI
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.io.IOException
-import java.util.concurrent.TimeUnit
 import kotlin.coroutines.experimental.CoroutineContext
 
 class MainActivity : AppCompatActivity() {
@@ -79,12 +78,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun alertWithOkButton(message: String){
-        alert(message) {
-            okButton {  }
-        }.show()
-    }
-
     private val exceptionHandler: CoroutineContext = CoroutineExceptionHandler { _, throwable ->
         alertWithOkButton("Exception caught inside the exception handler")
         throwable.printStackTrace()
@@ -118,4 +111,11 @@ class MainActivity : AppCompatActivity() {
             }
         }.show()
     }
+
+    private fun alertWithOkButton(message: String){
+        alert(message) {
+            okButton {  }
+        }.show()
+    }
+
 }

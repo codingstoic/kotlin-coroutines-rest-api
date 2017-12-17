@@ -15,6 +15,7 @@ import kotlin.coroutines.experimental.CoroutineContext
 class MainActivity : AppCompatActivity() {
     private val parentJob = Job()
     lateinit var numberOfUsersTextView : TextView
+    lateinit var numberOfPostsTextView : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             padding = 100
             gravity = Gravity.CENTER
             numberOfUsersTextView = textView("Loading Number of users ...")
+            numberOfPostsTextView = textView("Loading Number of posts ...")
             button("Create User") {
                 onClick {
                     createUser()
@@ -50,7 +52,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             val result = task.await()
-            println("number of posts ${result.body()?.size}")
+            val numberOfPosts = "number of posts ${result.body()?.size}"
+            numberOfPostsTextView.text = numberOfPosts
 
         }.invokeOnCompletion { it: Throwable? ->
             println("caught an exception inside invoke on completion callback")
@@ -84,7 +87,6 @@ class MainActivity : AppCompatActivity() {
     // exception handling done with exception handler
     private fun getAllUsers() {
         launch(parentJob + UI + exceptionHandler) {
-            delay(5, TimeUnit.SECONDS)
             val listOfUsers = run(CommonPool) {
                 RestClient.apiDefinition.listUsers().execute()
             }

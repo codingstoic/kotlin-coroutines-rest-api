@@ -34,9 +34,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation "com.squareup.retrofit2:converter-gson:2.3.0"
 
+    implementation "org.jetbrains.anko:anko:$rootProject.ext.anko_version"
     implementation "org.jetbrains.anko:anko-commons:$rootProject.ext.anko_version"
     implementation "org.jetbrains.anko:anko-design:$rootProject.ext.anko_version"
-    implementation "org.jetbrains.anko:anko-sdk19:$rootProject.ext.anko_version"
     implementation "org.jetbrains.anko:anko-appcompat-v7:$rootProject.ext.anko_version"
 
 

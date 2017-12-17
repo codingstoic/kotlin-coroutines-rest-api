@@ -3,21 +3,32 @@ package com.coffeeanddistractions.advancecoroutines
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.TextView
 import kotlinx.coroutines.experimental.*
 import kotlinx.coroutines.experimental.android.UI
 import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk25.coroutines.onClick
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.experimental.CoroutineContext
 
 class MainActivity : AppCompatActivity() {
     private val parentJob = Job()
+    lateinit var numberOfUsersTextView : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        verticalLayout {
+            padding = 100
+            gravity = Gravity.CENTER
+            numberOfUsersTextView = textView("Loading Number of users ...")
+            button("Create User") {
+                onClick {
+                    createUser()
+                }
+            }
+        }
     }
 
     override fun onResume() {
@@ -83,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun createUser(view: View) {
+    fun createUser() {
         alert("Enter user first name and last name") {
             customView {
                 verticalLayout {
